@@ -3,7 +3,7 @@ env:
   CI: true
 
 on:
-  pull_request:
+  push:
     branches:
       - main
 
@@ -32,8 +32,11 @@ jobs:
           key: ${{ matrix.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ matrix.os }}-yarn-
+
       - run: yarn
 
       - run: yarn lint
       - run: yarn build
       - run: yarn test
+      - run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" > .npmrc
+      - run: npm publish
