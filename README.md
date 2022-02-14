@@ -1,4 +1,4 @@
-# Quantum SDK
+# Quantum Swap SDK
 
 Forked from the PancakeSwap SDK.
 
